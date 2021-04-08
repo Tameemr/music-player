@@ -61,6 +61,16 @@ function chillHop() {
       id: uuidv4(),
       active: false,
     },
+    {
+      name: "Into The Past",
+      cover:
+        "https://chillhop.com/wp-content/uploads/2021/02/d12927eedcc2f5afba2ab049a4a1ea46c2266ae3-1024x1024.jpg",
+      artist: "CYGN",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=14984",
+      color: ["#070709", "#1E1F2D"],
+      id: uuidv4(),
+      active: false,
+    },
     //ADD MORE HERE
   ];
 }
