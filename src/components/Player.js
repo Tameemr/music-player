@@ -18,11 +18,10 @@ const Player = ({
   songs,
   setSongs,
 }) => {
-  // Use Effect
-  useEffect(() => {
-    // Add Active State
+  // Event Handlers
+  const activeLibraryHandler = (nextPrev) => {
     const newSongs = songs.map((song) => {
-      if (song.id === currentSong.id) {
+      if (song.id === nextPrev.id) {
         return {
           ...song,
           active: true,
@@ -36,9 +35,8 @@ const Player = ({
     });
 
     setSongs(newSongs);
-  }, [currentSong]);
+  };
 
-  // Event Handlers
   const playSongHandler = () => {
     if (isPlaying) {
       audioRef.current.pause();
@@ -65,10 +63,12 @@ const Player = ({
     );
     if ((direction = "skip-forward")) {
       await setCurrentSong(songs[(currentSongIndex + 1) % songs.length]);
+      activeLibraryHandler(songs[(currentSongIndex + 1) % songs.length]);
     }
     if (direction === "skip-back") {
       if ((currentSongIndex - 1) % songs.length === -1) {
         await setCurrentSong(songs[songs.length - 1]);
+        activeLibraryHandler(songs[songs.length - 1]);
         return;
       }
       await setCurrentSong(songs[(currentSongIndex - 1) % songs.length]);
